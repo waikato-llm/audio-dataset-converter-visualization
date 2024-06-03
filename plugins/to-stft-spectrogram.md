@@ -1,0 +1,57 @@
+# to-stft-spectrogram
+
+* accepts: adc.api.AudioData
+
+Generates a plot from a short time fourier transform (STFT) spectrogram.
+
+```
+usage: to-stft-spectrogram [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
+                           [-N LOGGER_NAME]
+                           [-r SPLIT_RATIOS [SPLIT_RATIOS ...]]
+                           [-n SPLIT_NAMES [SPLIT_NAMES ...]]
+                           [--num_fft NUM_FFT] [--hop_length HOP_LENGTH]
+                           [--win_length WIN_LENGTH] [--window WINDOW]
+                           [--center] [--pad_mode PAD_MODE] [--cmap CMAP]
+                           [--dpi DPI] -o OUTPUT_DIR [-t {jpg,png}]
+
+Generates a plot from a short time fourier transform (STFT) spectrogram.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -l {DEBUG,INFO,WARNING,ERROR,CRITICAL}, --logging_level {DEBUG,INFO,WARNING,ERROR,CRITICAL}
+                        The logging level to use. (default: WARN)
+  -N LOGGER_NAME, --logger_name LOGGER_NAME
+                        The custom name to use for the logger, uses the plugin
+                        name by default (default: None)
+  -r SPLIT_RATIOS [SPLIT_RATIOS ...], --split_ratios SPLIT_RATIOS [SPLIT_RATIOS ...]
+                        The split ratios to use for generating the splits
+                        (must sum up to 100) (default: None)
+  -n SPLIT_NAMES [SPLIT_NAMES ...], --split_names SPLIT_NAMES [SPLIT_NAMES ...]
+                        The split names to use for the generated splits.
+                        (default: None)
+  --num_fft NUM_FFT     The length of the windowed signal after padding with
+                        zeros. should be power of two. (default: 2048)
+  --hop_length HOP_LENGTH
+                        The number of audio samples between adjacent STFT
+                        columns. (default: 512)
+  --win_length WIN_LENGTH
+                        The each frame of audio is windowed by window of
+                        length win_length and then padded with zeros to match
+                        num_fft. defaults to win_length = num_fft. (default:
+                        None)
+  --window WINDOW       A window function, such as scipy.signal.windows.hann.
+                        (default: hann)
+  --center              For centering the signal. (default: False)
+  --pad_mode PAD_MODE   Used when 'centering' (default: constant)
+  --cmap CMAP           Matplotlib colormap to use (append _r for reverse),
+                        automatically infers map if not provided; use 'gray_r'
+                        for grayscale; for available maps see: https://matplot
+                        lib.org/stable/gallery/color/colormap_reference.html
+                        (default: None)
+  --dpi DPI             The dots per inch. (default: 100)
+  -o OUTPUT_DIR, --output_dir OUTPUT_DIR
+                        The directory to store the audio files in. Any defined
+                        splits get added beneath there. (default: None)
+  -t {jpg,png}, --output_type {jpg,png}
+                        The type of image to geneate. (default: png)
+```
