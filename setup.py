@@ -18,7 +18,7 @@ setup(
     long_description=(
             _read('DESCRIPTION.rst') + b'\n' +
             _read('CHANGES.rst')).decode('utf-8'),
-    url="https://github.com/waikato-datamining/audio-dataset-converter-visualization",
+    url="https://github.com/waikato-llm/audio-dataset-converter-visualization",
     classifiers=[
         'Development Status :: 4 - Beta',
         'License :: OSI Approved :: MIT License',

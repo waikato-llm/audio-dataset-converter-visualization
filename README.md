@@ -4,8 +4,8 @@ Adds support for visualizing audio data.
 ## Installation
 
 ```bash
-pip install git+https://github.com/waikato-datamining/audio-dataset-converter.git
-pip install git+https://github.com/waikato-datamining/audio-dataset-converter-visualization.git
+pip install git+https://github.com/waikato-llm/audio-dataset-converter.git
+pip install git+https://github.com/waikato-llm/audio-dataset-converter-visualization.git
 ```
 
 ## Plugins
