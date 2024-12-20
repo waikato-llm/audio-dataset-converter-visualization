@@ -13,7 +13,7 @@ def _read(f):
 
 
 setup(
-    name="audio-dataset-converter-visualization",
+    name="audio_dataset_converter_visualization",
     description="Python3 library that adds visualization supportto the audio-dataset-converter library.",
     long_description=(
             _read('DESCRIPTION.rst') + b'\n' +
@@ -31,7 +31,7 @@ setup(
     },
     packages=find_namespace_packages(where='src'),
     install_requires=[
-        "audio-dataset-converter>=0.0.1",
+        "audio_dataset_converter>=0.0.1",
         "matplotlib",
     ],
     version="0.0.1",
