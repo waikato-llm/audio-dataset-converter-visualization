@@ -9,10 +9,11 @@ import numpy as np
 from wai.logging import LOGGING_WARNING
 
 from adc.api import AudioData, SplittableStreamWriter, make_list
+from seppl.placeholders import placeholder_list, InputBasedPlaceholderSupporter
 from ._output_types import OUTPUT_TYPES, OUTPUT_TYPE_PNG
 
 
-class MelSpectrogram(SplittableStreamWriter):
+class MelSpectrogram(SplittableStreamWriter, InputBasedPlaceholderSupporter):
 
     def __init__(self, num_fft: int = None, hop_length: int = None, win_length: int = None,
                  window: str = None, center: bool = None, pad_mode: str = None,
@@ -102,7 +103,7 @@ class MelSpectrogram(SplittableStreamWriter):
         parser.add_argument("--power", type=float, help="The exponent for the magnitude melspectrogram. e.g., 1 for energy, 2 for power, etc.", required=False, default=2.0)
         parser.add_argument("--cmap", type=str, help="Matplotlib colormap to use (append _r for reverse), automatically infers map if not provided; use 'gray_r' for grayscale; for available maps see: https://matplotlib.org/stable/gallery/color/colormap_reference.html", required=False, default=None)
         parser.add_argument("--dpi", type=int, help="The dots per inch.", required=False, default=100)
-        parser.add_argument("-o", "--output_dir", type=str, help="The directory to store the audio files in. Any defined splits get added beneath there.", required=True)
+        parser.add_argument("-o", "--output_dir", type=str, help="The directory to store the audio files in. Any defined splits get added beneath there. " + placeholder_list(obj=self), required=True)
         parser.add_argument("-t", "--output_type", choices=OUTPUT_TYPES, help="The type of image to geneate.", required=False, default=OUTPUT_TYPE_PNG)
         return parser
 
@@ -153,10 +154,6 @@ class MelSpectrogram(SplittableStreamWriter):
         if self.power is None:
             self.power = 2.0
 
-        if not os.path.exists(self.output_dir):
-            self.logger().info("Creating output dir: %s" % self.output_dir)
-            os.makedirs(self.output_dir)
-
     def write_stream(self, data):
         """
         Saves the data one by one.
@@ -164,12 +161,12 @@ class MelSpectrogram(SplittableStreamWriter):
         :param data: the data to write (single record or iterable of records)
         """
         for item in make_list(data):
-            sub_dir = self.output_dir
+            sub_dir = self.session.expand_placeholders(self.output_dir)
             if self.splitter is not None:
                 split = self.splitter.next()
                 sub_dir = os.path.join(sub_dir, split)
             if not os.path.exists(sub_dir):
-                self.logger().info("Creating sub dir: %s" % sub_dir)
+                self.logger().info("Creating dir: %s" % sub_dir)
                 os.makedirs(sub_dir)
 
             audio = item.audio

@@ -16,7 +16,7 @@ usage: to-stft-spectrogram [-h] [-l {DEBUG,INFO,WARNING,ERROR,CRITICAL}]
 
 Generates a plot from a short time fourier transform (STFT) spectrogram.
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   -l {DEBUG,INFO,WARNING,ERROR,CRITICAL}, --logging_level {DEBUG,INFO,WARNING,ERROR,CRITICAL}
                         The logging level to use. (default: WARN)
@@ -51,7 +51,10 @@ optional arguments:
   --dpi DPI             The dots per inch. (default: 100)
   -o OUTPUT_DIR, --output_dir OUTPUT_DIR
                         The directory to store the audio files in. Any defined
-                        splits get added beneath there. (default: None)
+                        splits get added beneath there. Supported
+                        placeholders: {INPUT_PATH}, {INPUT_NAMEEXT},
+                        {INPUT_NAMENOEXT}, {INPUT_EXT}, {INPUT_PARENT_PATH},
+                        {INPUT_PARENT_NAME} (default: None)
   -t {jpg,png}, --output_type {jpg,png}
                         The type of image to geneate. (default: png)
 ```
