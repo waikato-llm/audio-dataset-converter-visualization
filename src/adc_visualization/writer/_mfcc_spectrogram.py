@@ -19,7 +19,7 @@ class MFCCSpectrogram(SplittableStreamWriter, InputBasedPlaceholderSupporter):
                  window: str = None, center: bool = None, pad_mode: str = None,
                  power: float = None, cmap: str = None, dpi: int = None,
                  output_dir: str = None, output_type: str = OUTPUT_TYPE_PNG,
-                 split_names: List[str] = None, split_ratios: List[int] = None,
+                 split_names: List[str] = None, split_ratios: List[int] = None, split_group: str = None,
                  logger_name: str = None, logging_level: str = LOGGING_WARNING):
         """
         Initializes the writer.
@@ -60,10 +60,12 @@ class MFCCSpectrogram(SplittableStreamWriter, InputBasedPlaceholderSupporter):
         :type split_ratios: list
         :param logger_name: the name to use for the logger
         :type logger_name: str
+        :param split_group: the regular expression with a single group used for keeping items in the same split, e.g., for identifying the base name of a file or the ID
+        :type split_group: str
         :param logging_level: the logging level to use
         :type logging_level: str
         """
-        super().__init__(split_names=split_names, split_ratios=split_ratios, logger_name=logger_name, logging_level=logging_level)
+        super().__init__(split_names=split_names, split_ratios=split_ratios, split_group=split_group, logger_name=logger_name, logging_level=logging_level)
         self.num_mfcc = num_mfcc
         self.dct_type = dct_type
         self.norm = norm
