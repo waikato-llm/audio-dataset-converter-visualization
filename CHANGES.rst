@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.0.3 (????-??-??)
+0.0.3 (2025-07-10)
 ------------------
 
 - new grouping support added to writers via the `--split_group` option
