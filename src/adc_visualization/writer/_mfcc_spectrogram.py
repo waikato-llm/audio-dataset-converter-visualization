@@ -7,8 +7,9 @@ import librosa.display
 import matplotlib.pyplot as plt
 from wai.logging import LOGGING_WARNING
 
-from adc.api import AudioData, SplittableStreamWriter, make_list
 from seppl.placeholders import placeholder_list, InputBasedPlaceholderSupporter
+from kasperl.api import SplittableStreamWriter, make_list
+from adc.api import AudioData
 from ._output_types import OUTPUT_TYPES, OUTPUT_TYPE_PNG
 
 
